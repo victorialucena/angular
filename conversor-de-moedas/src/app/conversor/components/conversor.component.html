@@ -40,11 +40,19 @@
         type="submit"
         value="Converter"
         class="btn btn-success"
-        data-toggle="modal"
-        data-target="#modalCotacao"
+        data-bs-toggle="modal"
+        data-bs-target="#modalCotacao"
         (click)="converter()"
         [disabled]="!conversaoForm.form.valid"
       />
+      {{ conversaoResponse | json }}
     </form>
   </div>
+  <modal-cotacao
+    [id]="'modalCotacao'"
+    [conversaoResponse]="conversaoResponse"
+    [conversao]="conversao"
+    (onConfirm)="init()"
+  >
+  </modal-cotacao>
 </div>

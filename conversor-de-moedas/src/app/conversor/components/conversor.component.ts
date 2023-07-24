@@ -14,28 +14,37 @@ export class ConversorComponent implements OnInit {
   moedas: Moeda[];
   conversao: Conversao;
   possuiErro: boolean;
-  conversaoResponse: ConversaoResponse; 
+  conversaoResponse: ConversaoResponse;
 
   @ViewChild("conversaoForm", { static: true }) conversaoForm: NgForm;
 
   constructor(
     private moedaService: MoedaService,
     private conversorService: ConversorService
-  ){}
+  ) { }
 
   ngOnInit() {
     this.moedas = this.moedaService.listarTodas();
     this.init()
   }
 
-  init(): void{
+  init(): void {
     this.conversao = new Conversao('USD', 'BRL', null);
     this.possuiErro = false;
   }
 
-  converter(): void{
+  converter(): void {
     if (this.conversaoForm.form.valid) {
-      alert('')
+      this.conversorService
+        .converter(this.conversao)
+        .subscribe(
+          (response) => {
+            this.conversaoResponse = response;
+            this.possuiErro = response.error ? true : null;
+          },
+          error => this.possuiErro = true
+        );
     }
   }
+
 }

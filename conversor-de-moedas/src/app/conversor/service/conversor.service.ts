@@ -12,7 +12,7 @@ import {
 @Injectable()
 export class ConversorService {
 
-  private readonly BASE_URL = "http://data.fixer.io/api/latest?access_key= 2a9a1788e41bd50278eb9a3b9bc7ad86";
+  private readonly BASE_URL = "http://data.fixer.io/api/latest?access_key=2a9a1788e41bd50278eb9a3b9bc7ad86";
 
   constructor(private http: HttpClient) {}
 
